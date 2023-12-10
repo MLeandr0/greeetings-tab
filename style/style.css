@@ -1,0 +1,66 @@
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    min-height: 100svh;
+    flex-direction: column;
+    background: url("night-sky.jpg");
+    background-size: cover;
+    background-position: center;
+
+}
+
+.shortcut-box {
+    width: 700px;
+    margin: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.display-box {
+    border-radius: 25px;
+    height: 454px;
+    width: 642px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.060);
+    backdrop-filter: blur(80px);
+    flex-direction: column;
+}
+
+.display-box-date{
+    color: white;
+    margin: 0px;
+    font-size: 50px;
+    margin-top: 50px;
+}
+
+.greeting-message{
+    color: white;
+    margin: 0px;
+    font-size: 50px;
+}
+
+.image-shortcut{
+    width: 55px;
+    height: 55px;
+}
+
+.display-box-hour {
+    color: white;
+    margin: 0px;
+    font-size: 200px;
+}
+
+.shortcut-box-container {
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.060);
+    backdrop-filter: blur(80px);
+    height: 108px;
+    width: 103px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
