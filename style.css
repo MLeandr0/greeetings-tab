@@ -8,7 +8,6 @@
     background: url("night-sky.jpg");
     background-size: cover;
     background-position: center;
-
 }
 
 .icon-overlay {
@@ -20,6 +19,13 @@
     display: none;
     justify-content: center;
     align-items: center;
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
 }
 
 .shortcut-box {
@@ -44,20 +50,20 @@
     flex-direction: column;
 }
 
-.display-box-date{
+.display-box-date {
     color: white;
     margin: 0px;
     font-size: 50px;
     margin-top: 50px;
 }
 
-.greeting-message{
+.greeting-message {
     color: white;
     margin: 0px;
     font-size: 50px;
 }
 
-.image-shortcut{
+.image-shortcut {
     width: 55px;
     height: 55px;
 }

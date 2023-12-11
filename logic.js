@@ -9,6 +9,11 @@ const daysNames = [
     'Friday', 'Saturday'
 ];
 
+function MyFunction() {
+    alert('CADELA');
+    event.preventDefault();
+}
+
 function formatTime(time) {
     if (time < 10) return "0" + time;
     return time;
