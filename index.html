@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
 
-    <title>New Table</title>
+    <title>New Tab</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="logic.js" defer></script>
 
@@ -12,29 +12,48 @@
     <div class="display-box">
         <p id="currentDate" class="display-box-date"></p>
         <p id="currentTime" class="display-box-hour"></p>
-        <p class="greeting-message">Welcome Back</p>
-        
+        <p class="greeting-message">Welcome Back</p>  
     </div>
+
+    <!-- Popup content container -->
+    <div id="popupContainer"></div>
+    <!-- Overlay for darkening the rest of the screen -->
+    <div id="overlay"></div>
 
     <div class="shortcut-box">
 
         <a href="https://www.youtube.com/watch?v=4KxRp8jeliQ" class = "shortcut-box-container">
+            <button class="icon-overlay" onclick="openForm('https://www.youtube.com/watch?v=4KxRp8jeliQ', event)">
+                <img src="more.png">
+            </button>
             <img class= "image-shortcut" src="https://icon.horse/icon/youtube.com" alt="Example Image">
         </a>
 
         <a href="https://github.com/" class = "shortcut-box-container">
+            <button class="icon-overlay" onclick="openForm('https://github.com/', event)">
+                <img src="more.png">
+            </button>
             <img class= "image-shortcut" src="https://icon.horse/icon/github.com" alt="Example Image">
         </a>
 
         <a href="https://web.whatsapp.com/" class = "shortcut-box-container">
+            <button class="icon-overlay" onclick="openForm('https://web.whatsapp.com/', event)">
+                <img src="more.png">
+            </button>
             <img class= "image-shortcut" src="https://icon.horse/icon/whatsapp.com" alt="Example Image">
         </a>
 
         <a href="https://www.linkedin.com/" class = "shortcut-box-container">
+            <button class="icon-overlay" onclick="openForm('https://www.linkedin.com/', event)">
+                <img src="more.png">
+            </button>
             <img class= "image-shortcut" src="https://icon.horse/icon/linkedin.com" alt="Example Image">
         </a>
 
         <a href="https://music.youtube.com/" class = "shortcut-box-container">
+            <button class="icon-overlay" onclick="openForm('https://music.youtube.com/', event)">
+                <img src="more.png">
+            </button>
             <img class= "image-shortcut" src="https://icon.horse/icon/music.youtube.com" alt="Example Image">
         </a>
     </div>
