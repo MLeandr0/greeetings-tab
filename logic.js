@@ -4,18 +4,19 @@ const monthNames = [
     'September', 'October', 'November', 'December'
 ];
 
+const daysNames = [
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+    'Friday', 'Saturday'
+];
+
 function formatTime(time) {
     if (time < 10) return "0" + time;
     return time;
 }
 
-function myFunction() {
-    alert("Function called from HTML!");
-}
-
 function updateCurrentDate() {
     const currentDate = new Date();
-    const currentDateTime = currentDate.getDay() + "° " + monthNames[currentDate.getMonth()] + " - " + currentDate.getFullYear();
+    const currentDateTime = daysNames[currentDate.getDay()] + " - " + monthNames[currentDate.getMonth()];
     document.getElementById("currentDate").innerHTML = currentDateTime;
 }
 
