@@ -1,4 +1,4 @@
-var shortcuts = [
+var shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [
     { url: 'https://www.youtube.com/watch?v=4KxRp8jeliQ', imageSrc: 'https://icon.horse/icon/youtube.com' },
     { url: 'https://github.com/', imageSrc: 'https://icon.horse/icon/github.com' },
     { url: 'https://web.whatsapp.com/', imageSrc: 'https://icon.horse/icon/whatsapp.com' },
@@ -17,15 +17,39 @@ const daysNames = [
     'Friday', 'Saturday'
 ];
 
-
-var shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
-
 function saveShortcutsToLocalStorage() {
     localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
 }
 
 function loadShortcutsFromLocalStorage() {
-    shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    const storedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || shortcuts;
+
+    var shortcutBox = document.querySelector('.shortcut-box');
+    shortcutBox.innerHTML = '';
+
+    storedShortcuts.forEach(function (shortcut) {
+        var shortcutContainer = document.createElement('a');
+        shortcutContainer.href = shortcut.url;
+        shortcutContainer.classList.add('shortcut-box-container');
+
+        var iconOverlayButton = document.createElement('button');
+        iconOverlayButton.classList.add('icon-overlay');
+        iconOverlayButton.setAttribute('onclick', 'openForm("' + shortcut.url + '", event)');
+
+        var iconImage = document.createElement('img');
+        iconImage.src = 'more.png';
+
+        var imageShortcut = document.createElement('img');
+        imageShortcut.classList.add('image-shortcut');
+        imageShortcut.src = shortcut.imageSrc;
+        imageShortcut.alt = 'Example Image';
+
+        iconOverlayButton.appendChild(iconImage);
+        shortcutContainer.appendChild(iconOverlayButton);
+        shortcutContainer.appendChild(imageShortcut);
+        shortcutBox.appendChild(shortcutContainer);
+    });
+
 }
 
 function openForm(link, event) {
