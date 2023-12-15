@@ -1,4 +1,5 @@
-var shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [
+//Refactor functions
+var shortcuts = [
     { url: 'https://www.youtube.com/watch?v=4KxRp8jeliQ', imageSrc: 'https://icon.horse/icon/youtube.com' },
     { url: 'https://github.com/', imageSrc: 'https://icon.horse/icon/github.com' },
     { url: 'https://web.whatsapp.com/', imageSrc: 'https://icon.horse/icon/whatsapp.com' },
@@ -19,15 +20,25 @@ const daysNames = [
 
 function saveShortcutsToLocalStorage() {
     localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+    console.log('Shortcuts saved to localStorage:', shortcuts);
 }
 
+//Split function to reduce its size
 function loadShortcutsFromLocalStorage() {
-    const storedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || shortcuts;
+
+    const storedShortcuts = JSON.parse(localStorage.getItem('shortcuts'));
+
+    if (storedShortcuts === null || storedShortcuts === undefined) {
+        saveShortcutsToLocalStorage()
+
+    } else {
+        shortcuts = storedShortcuts;
+    }
 
     var shortcutBox = document.querySelector('.shortcut-box');
     shortcutBox.innerHTML = '';
 
-    storedShortcuts.forEach(function (shortcut) {
+    shortcuts.forEach(function (shortcut) {
         var shortcutContainer = document.createElement('a');
         shortcutContainer.href = shortcut.url;
         shortcutContainer.classList.add('shortcut-box-container');
@@ -49,7 +60,6 @@ function loadShortcutsFromLocalStorage() {
         shortcutContainer.appendChild(imageShortcut);
         shortcutBox.appendChild(shortcutContainer);
     });
-
 }
 
 function openForm(link, event) {
@@ -89,47 +99,49 @@ function updateIcon(shortcutElement, newLink) {
 }
 
 function editLink() {
-    var index = document.getElementById('popupForm').getAttribute('data-index');
+    var index = parseInt(document.getElementById('popupForm').getAttribute('data-index'));
     
     var newLink = document.getElementById('linkInput').value;
 
     var shortcutBox = document.querySelector('.shortcut-box');
-    var shortcutToUpdate = shortcutBox.querySelector(`a:nth-child(${parseInt(index) + 1})`);
+    var shortcutToUpdate = shortcutBox.querySelector(`.shortcut-box-container:nth-child(${index + 1})`);
     
     if (shortcutToUpdate) {
         shortcutToUpdate.href = newLink;
         var newImageSrc = updateIcon(shortcutToUpdate, newLink);
 
         shortcuts[index] = {
-            link: newLink,
+            url: newLink,
             imageSrc: newImageSrc,
         };
 
+        location.reload();
         saveShortcutsToLocalStorage();
     }
 
     closeForm();
 }
 
-
 function deleteLink() {
     var index = parseInt(document.getElementById('popupForm').getAttribute('data-index'));
 
-    if (!isNaN(index)) {
+    if (!isNaN(index) && index >= 0 && index < shortcuts.length) {
         shortcuts.splice(index, 1);
 
         var shortcutBox = document.querySelector('.shortcut-box');
-        var shortcutToDelete = shortcutBox.querySelector(`a:nth-child(${index + 1})`);
+        var shortcutToDelete = shortcutBox.querySelector(`.shortcut-box-container:nth-child(${index + 1})`);
 
         if (shortcutToDelete) {
             shortcutBox.removeChild(shortcutToDelete);
+            saveShortcutsToLocalStorage();
         } else {
-            console.error("Element to delete not found");
+            console.error("Element to delete not found in the DOM");
         }
 
         closeForm();
+        location.reload();
     } else {
-        console.error("Invalid index");
+        console.error("Invalid index or index out of bounds");
     }
 }
 
@@ -145,7 +157,7 @@ function formatTime(time) {
 
 function updateCurrentDate() {
     const currentDate = new Date();
-    const currentDateTime = daysNames[currentDate.getDay()] + " - " + monthNames[currentDate.getMonth()];
+    const currentDateTime = daysNames[currentDate.getDay()] + " - " + monthNames[currentDate.getMonth()] + " - " + currentDate.getFullYear();
     document.getElementById("currentDate").innerHTML = currentDateTime;
 }
 
