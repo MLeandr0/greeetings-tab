@@ -87,29 +87,29 @@
 
 @media screen and (max-width: 768px) {
     .display-box {
-        width: 900px;
-        height: 708px;
+        width: 350px;
+        height: 210px;
     }
     .display-box-date {
-        font-size: 75px;
+        font-size: 30px;
     }
     .display-box-hour {
-        font-size: 300px;
+        font-size: 45px;
     }
     .greeting-message {
-        font-size: 75px;
+        font-size: 30px;
     }
     .shortcut-box-container {
-        height: 150px;
-        width: 150px;
+        height: 70px;
+        width: 80px;
     }
     .image-shortcut {
-        width: 70px;
-        height: 70px;
+        width: 30px;
+        height: 30px;
     }
     .shortcut-box {
         gap: 10px;
-        width: 900px;
+        width: 350px;
     }
 }
 
