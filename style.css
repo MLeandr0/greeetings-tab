@@ -85,7 +85,7 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 768px) {
     .display-box {
         width: 900px;
         height: 708px;
