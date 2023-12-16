@@ -67,6 +67,10 @@
     height: 48px;
 }
 
+.image-addShortcut {
+    display: none;
+}
+
 .display-box-hour {
     color: white;
     margin: 0px;
@@ -74,6 +78,8 @@
 }
 
 .shortcut-box-container {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease, scale 0.5s ease;
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.060);
     backdrop-filter: blur(80px);
@@ -85,19 +91,38 @@
     flex-direction: column;
 }
 
+.shortcut-box-container:hover {
+    transform: scale(1.2);
+}
+
+.plus-icon {
+    display: flex;
+    width: 52px;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
 @media screen and (max-width: 768px) {
     .display-box {
         width: 350px;
         height: 210px;
+        justify-content: space-evenly;
     }
     .display-box-date {
-        font-size: 30px;
+        font-size: 28px;
     }
     .display-box-hour {
-        font-size: 45px;
+        font-size: 80px;
     }
     .greeting-message {
-        font-size: 30px;
+        font-size: 28px;
     }
     .shortcut-box-container {
         height: 70px;
