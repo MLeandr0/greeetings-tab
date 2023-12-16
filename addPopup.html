@@ -86,7 +86,7 @@
     <div class="popup" id="popupForm">
         <form onsubmit="event.preventDefault(); editLink();" class="form-container">
             <button onclick="closeForm()" class="close-button">X</button>
-            <h1>Edit shortcut</h1>
+            <h1>Add shortcut</h1>
     
             <div>
                 <label for="linkInput"><b>Page URL</b></label>
@@ -94,8 +94,8 @@
             </div>
     
             <div>
-                <button type="submit" class="btn" onclick="editLink()">Save</button>
-                <button type="button" class="btn cancel" onclick="deleteLink()">Delete</button>
+                <button type="submit" class="btn" onclick="editLink()">Add</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
             </div>
         </form>
     </div>

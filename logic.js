@@ -54,12 +54,55 @@ function loadShortcutsFromLocalStorage() {
         imageShortcut.classList.add('image-shortcut');
         imageShortcut.src = shortcut.imageSrc;
         imageShortcut.alt = 'Example Image';
+        
 
         iconOverlayButton.appendChild(iconImage);
         shortcutContainer.appendChild(iconOverlayButton);
         shortcutContainer.appendChild(imageShortcut);
         shortcutBox.appendChild(shortcutContainer);
     });
+
+    if(shortcuts.length < 5) {
+        var shortcutContainer = document.createElement('a');
+        shortcutContainer.href = 'teste';
+        shortcutContainer.classList.add('shortcut-box-container');
+    
+        var plusIconButton = document.createElement('button');
+        plusIconButton.classList.add('plus-icon');
+        plusIconButton.setAttribute('onclick', 'addPopup("' + '' + '", event)');
+    
+        var iconImage = document.createElement('img');
+        iconImage.src = 'plus.png';
+
+        var imageShortcut = document.createElement('img');
+        imageShortcut.classList.add('image-addShortcut');
+        imageShortcut.alt = 'Example Image';
+    
+        plusIconButton.appendChild(iconImage);
+        shortcutContainer.appendChild(plusIconButton);
+        shortcutContainer.appendChild(imageShortcut);
+        shortcutBox.appendChild(shortcutContainer);
+    }
+}
+
+function addPopup(link, event) {
+    var commonParent = event.target.parentElement.parentElement.parentElement;
+
+    var siblings = Array.from(commonParent.children);
+
+    var index = siblings.indexOf(event.target.parentElement.parentElement); 
+
+    fetch('addPopup.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('popupContainer').innerHTML = data;
+            document.getElementById('linkInput').value = link;
+            document.getElementById('popupForm').setAttribute('data-index', index);
+            document.getElementById("popupForm").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        });
+
+        event.preventDefault();
 }
 
 function openForm(link, event) {
@@ -91,6 +134,11 @@ function getIcon(link) {
 
 function updateIcon(shortcutElement, newLink) {
     var imageShortcut = shortcutElement.querySelector('.image-shortcut');
+    
+    if (!imageShortcut) {
+        imageShortcut = shortcutElement.querySelector('.image-addShortcut');
+    }
+
     if (imageShortcut) {
         imageShortcut.src = "https://icon.horse/icon/" + getIcon(newLink);
     }
@@ -157,7 +205,8 @@ function formatTime(time) {
 
 function updateCurrentDate() {
     const currentDate = new Date();
-    const currentDateTime = daysNames[currentDate.getDay()] + " - " + monthNames[currentDate.getMonth()] + " - " + currentDate.getFullYear();
+    let currentDateYear = currentDate.getFullYear();
+    const currentDateTime = daysNames[currentDate.getDay()] + " - " + monthNames[currentDate.getMonth()] + " - " + currentDateYear.toString().slice(2);
     document.getElementById("currentDate").innerHTML = currentDateTime;
 }
 
