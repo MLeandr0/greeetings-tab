@@ -13,7 +13,7 @@
 .icon-overlay {
     position:absolute;
     top: 7px;
-    left: 70px;
+    left: 60px;
     width: 25px;
     height: 18px;
     display: none;
@@ -40,8 +40,8 @@
 
 .display-box {
     border-radius: 25px;
-    height: 454px;
-    width: 642px;
+    height: 354px;
+    width: 542px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,13 +53,13 @@
 .display-box-date {
     color: white;
     margin: 0px;
-    font-size: 50px;
+    font-size: 30px;
 }
 
 .greeting-message {
     color: white;
     margin: 0px;
-    font-size: 50px;
+    font-size: 30px;
 }
 
 .image-shortcut {
@@ -74,7 +74,7 @@
 .display-box-hour {
     color: white;
     margin: 0px;
-    font-size: 200px;
+    font-size: 180px;
 }
 
 .shortcut-box-container {
@@ -83,8 +83,8 @@
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.060);
     backdrop-filter: blur(80px);
-    height: 108px;
-    width: 103px;
+    height: 98px;
+    width: 93px;
     justify-content: center;
     align-items: center;
     display: flex;
