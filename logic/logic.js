@@ -1,4 +1,3 @@
-//Refactor functions
 var shortcuts = [
     { url: 'https://www.youtube.com/watch?v=4KxRp8jeliQ', imageSrc: 'https://icon.horse/icon/youtube.com' },
     { url: 'https://github.com/', imageSrc: 'https://icon.horse/icon/github.com' },
@@ -19,11 +18,11 @@ const daysNames = [
 ];
 
 function saveShortcutsToLocalStorage() {
+
     localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
     console.log('Shortcuts saved to localStorage:', shortcuts);
 }
 
-//Split function to reduce its size
 function loadShortcutsFromLocalStorage() {
 
     const storedShortcuts = JSON.parse(localStorage.getItem('shortcuts'));
@@ -38,6 +37,16 @@ function loadShortcutsFromLocalStorage() {
     var shortcutBox = document.querySelector('.shortcut-box');
     shortcutBox.innerHTML = '';
 
+    createShortcutContainers(shortcutBox);
+
+    if(shortcuts.length < 5) {
+        createExtraAddshortcutContainer(shortcutBox)
+    }
+
+}
+
+function createShortcutContainers(container) {
+
     shortcuts.forEach(function (shortcut) {
         var shortcutContainer = document.createElement('a');
         shortcutContainer.href = shortcut.url;
@@ -45,10 +54,10 @@ function loadShortcutsFromLocalStorage() {
 
         var iconOverlayButton = document.createElement('button');
         iconOverlayButton.classList.add('icon-overlay');
-        iconOverlayButton.setAttribute('onclick', 'openForm("' + shortcut.url + '", event)');
+        iconOverlayButton.setAttribute('onclick', 'editForm("' + shortcut.url + '", event)');
 
         var iconImage = document.createElement('img');
-        iconImage.src = 'more.png';
+        iconImage.src = '/style/icons/more.png';
 
         var imageShortcut = document.createElement('img');
         imageShortcut.classList.add('image-shortcut');
@@ -59,40 +68,42 @@ function loadShortcutsFromLocalStorage() {
         iconOverlayButton.appendChild(iconImage);
         shortcutContainer.appendChild(iconOverlayButton);
         shortcutContainer.appendChild(imageShortcut);
-        shortcutBox.appendChild(shortcutContainer);
+        container.appendChild(shortcutContainer);
     });
-
-    if(shortcuts.length < 5) {
-        var shortcutContainer = document.createElement('a');
-        shortcutContainer.href = 'teste';
-        shortcutContainer.classList.add('shortcut-box-container');
-    
-        var plusIconButton = document.createElement('button');
-        plusIconButton.classList.add('plus-icon');
-        plusIconButton.setAttribute('onclick', 'addPopup("' + '' + '", event)');
-    
-        var iconImage = document.createElement('img');
-        iconImage.src = 'plus.png';
-
-        var imageShortcut = document.createElement('img');
-        imageShortcut.classList.add('image-addShortcut');
-        imageShortcut.alt = 'Example Image';
-    
-        plusIconButton.appendChild(iconImage);
-        shortcutContainer.appendChild(plusIconButton);
-        shortcutContainer.appendChild(imageShortcut);
-        shortcutBox.appendChild(shortcutContainer);
-    }
 }
 
-function addPopup(link, event) {
+function createExtraAddshortcutContainer(container) {
+
+    var shortcutContainer = document.createElement('a');
+    shortcutContainer.href = 'teste';
+    shortcutContainer.classList.add('shortcut-box-container');
+
+    var plusIconButton = document.createElement('button');
+    plusIconButton.classList.add('plus-icon');
+    plusIconButton.setAttribute('onclick', 'addForm("' + '' + '", event)');
+
+    var iconImage = document.createElement('img');
+    iconImage.src = '/style/icons/plus.png';
+
+    var imageShortcut = document.createElement('img');
+    imageShortcut.classList.add('image-addShortcut');
+    imageShortcut.alt = 'Example Image';
+
+    plusIconButton.appendChild(iconImage);
+    shortcutContainer.appendChild(plusIconButton);
+    shortcutContainer.appendChild(imageShortcut);
+    container.appendChild(shortcutContainer);
+}
+
+function addForm(link, event) {
+
     var commonParent = event.target.parentElement.parentElement.parentElement;
 
     var siblings = Array.from(commonParent.children);
 
     var index = siblings.indexOf(event.target.parentElement.parentElement); 
 
-    fetch('addPopup.html')
+    fetch('../style/components/addPopup.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('popupContainer').innerHTML = data;
@@ -105,14 +116,15 @@ function addPopup(link, event) {
         event.preventDefault();
 }
 
-function openForm(link, event) {
+function editForm(link, event) {
+
     var commonParent = event.target.parentElement.parentElement.parentElement;
 
     var siblings = Array.from(commonParent.children);
 
     var index = siblings.indexOf(event.target.parentElement.parentElement); 
 
-    fetch('popup.html')
+    fetch('../style/components/popup.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('popupContainer').innerHTML = data;
@@ -125,7 +137,8 @@ function openForm(link, event) {
         event.preventDefault();
 }
 
-function getIcon(link) {
+function getIconLink(link) {
+
     const regex = /^https?:\/\/(www\.)?([^\/]+)\//;
     const match = link.match(regex);
 
@@ -133,6 +146,7 @@ function getIcon(link) {
 }
 
 function updateIcon(shortcutElement, newLink) {
+
     var imageShortcut = shortcutElement.querySelector('.image-shortcut');
     
     if (!imageShortcut) {
@@ -140,13 +154,14 @@ function updateIcon(shortcutElement, newLink) {
     }
 
     if (imageShortcut) {
-        imageShortcut.src = "https://icon.horse/icon/" + getIcon(newLink);
+        imageShortcut.src = "https://icon.horse/icon/" + getIconLink(newLink);
     }
 
     return imageShortcut.src;
 }
 
 function editLink() {
+
     var index = parseInt(document.getElementById('popupForm').getAttribute('data-index'));
     
     var newLink = document.getElementById('linkInput').value;
@@ -171,6 +186,7 @@ function editLink() {
 }
 
 function deleteLink() {
+
     var index = parseInt(document.getElementById('popupForm').getAttribute('data-index'));
 
     if (!isNaN(index) && index >= 0 && index < shortcuts.length) {
@@ -194,16 +210,19 @@ function deleteLink() {
 }
 
 function closeForm() {
+
    document.getElementById("popupForm").style.display = "none";
    document.getElementById("overlay").style.display = "none";
 }
 
 function formatTime(time) {
+
     if (time < 10) return "0" + time;
     return time;
 }
 
 function updateCurrentDate() {
+
     const currentDate = new Date();
     let currentDateYear = currentDate.getFullYear();
     const currentDateTime = daysNames[currentDate.getDay()] + " - " + monthNames[currentDate.getMonth()] + " - " + currentDateYear.toString().slice(2);
@@ -211,6 +230,7 @@ function updateCurrentDate() {
 }
 
 function updateCurrentTime() {
+
     var time = Date.now();
     var date = new Date(time);
     var currentTime = formatTime(date.getHours()) + ":" + formatTime(date.getMinutes());
