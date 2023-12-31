@@ -57,7 +57,7 @@ function createShortcutContainers(container) {
         iconOverlayButton.setAttribute('onclick', 'editForm("' + shortcut.url + '", event)');
 
         var iconImage = document.createElement('img');
-        iconImage.src = '/style/icons/more.png';
+        iconImage.src = '/style/icons/more.webp';
 
         var imageShortcut = document.createElement('img');
         imageShortcut.classList.add('image-shortcut');
@@ -83,7 +83,7 @@ function createExtraAddshortcutContainer(container) {
     plusIconButton.setAttribute('onclick', 'addForm("' + '' + '", event)');
 
     var iconImage = document.createElement('img');
-    iconImage.src = '/style/icons/plus.png';
+    iconImage.src = '/style/icons/plus.webp';
 
     var imageShortcut = document.createElement('img');
     imageShortcut.classList.add('image-addShortcut');
