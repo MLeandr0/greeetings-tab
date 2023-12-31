@@ -61,7 +61,7 @@ Check out this projects that inspired this NewTab Page:
 
 ## Preview
 <p align="center">
-<img src="preview-image.png" width="600">
+<img src="preview-image.png" width="600" style="border-radius: 15px;">
 </p>
 
 
