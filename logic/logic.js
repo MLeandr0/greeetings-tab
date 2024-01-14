@@ -1,5 +1,5 @@
 var shortcuts = [
-    { url: 'https://www.youtube.com/watch?v=4KxRp8jeliQ', imageSrc: 'https://icon.horse/icon/youtube.com' },
+    { url: 'https://www.youtube.com/', imageSrc: 'https://icon.horse/icon/youtube.com' },
     { url: 'https://github.com/', imageSrc: 'https://icon.horse/icon/github.com' },
     { url: 'https://web.whatsapp.com/', imageSrc: 'https://icon.horse/icon/whatsapp.com' },
     { url: 'https://www.linkedin.com/', imageSrc: 'https://icon.horse/icon/linkedin.com' },
