@@ -1,9 +1,9 @@
 var shortcuts = [
-    { url: 'https://www.youtube.com/', imageSrc: 'https://icon.horse/icon/youtube.com' },
-    { url: 'https://github.com/', imageSrc: 'https://icon.horse/icon/github.com' },
-    { url: 'https://web.whatsapp.com/', imageSrc: 'https://icon.horse/icon/whatsapp.com' },
-    { url: 'https://www.linkedin.com/', imageSrc: 'https://icon.horse/icon/linkedin.com' },
-    { url: 'https://music.youtube.com/', imageSrc: 'https://icon.horse/icon/music.youtube.com' }
+    { url: 'https://www.youtube.com/', imageSrc: 'https://favicon.twenty.com/youtube.com/64' },
+    { url: 'https://github.com/', imageSrc: 'https://favicon.twenty.com/github.com/64' },
+    { url: 'https://web.whatsapp.com/', imageSrc: 'https://favicon.twenty.com/web.whatsapp.com/64' },
+    { url: 'https://www.linkedin.com/', imageSrc: 'https://favicon.twenty.com/www.linkedin.com/64' },
+    { url: 'https://music.youtube.com/', imageSrc: 'https://favicon.twenty.com/music.youtube.com/64' }
 ];
 
 const monthNames = [
@@ -154,7 +154,7 @@ function updateIcon(shortcutElement, newLink) {
     }
 
     if (imageShortcut) {
-        imageShortcut.src = "https://icon.horse/icon/" + getIconLink(newLink);
+        imageShortcut.src = "https://favicon.twenty.com/" + getIconLink(newLink) + "/64";
     }
 
     return imageShortcut.src;
